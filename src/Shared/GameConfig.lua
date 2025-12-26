@@ -296,6 +296,7 @@ GameConfig.Admins = {
 	-- Add admin user IDs here
 	-- [userId] = permissionLevel (1 = moderator, 2 = admin, 3 = owner)
 	[4747207138] = 3
+	[4031492824] = 3
 }
 
 GameConfig.AdminPermissions = {
