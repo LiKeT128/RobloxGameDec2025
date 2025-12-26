@@ -239,14 +239,15 @@ end
 	@param timeRange: number? - Only include transactions from last N seconds
 	@return table - Filtered transactions
 ]]
-function AntiCheat.GetTransactionsByType(userId: number, transactionType: string, timeRange: number?): {table}
+function AntiCheat.GetTransactionsByType(userId: number, transactionType: string?, timeRange: number?): {table}
 	local log = TransactionLog[userId] or {}
 	local result = {}
 	local now = os.time()
 	local cutoff = timeRange and (now - timeRange) or 0
 	
 	for _, transaction in ipairs(log) do
-		if transaction.Type == transactionType and transaction.Timestamp >= cutoff then
+		local typeMatches = (transactionType == nil or transactionType == "" or transaction.Type == transactionType)
+		if typeMatches and transaction.Timestamp >= cutoff then
 			table.insert(result, transaction)
 		end
 	end
@@ -304,7 +305,7 @@ function AntiCheat.DetectAnomalies(userId: number): {string}
 	end
 	
 	-- Check for suspiciously fast transactions
-	local recentTransactions = AntiCheat.GetTransactionsByType(userId, "", 10) -- Last 10 seconds
+	local recentTransactions = AntiCheat.GetTransactionsByType(userId, nil, 10) -- Last 10 seconds, all types
 	if #recentTransactions > 100 then
 		table.insert(anomalies, string.format(
 			"Transaction flooding: %d transactions in 10 seconds",

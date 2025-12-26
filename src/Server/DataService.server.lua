@@ -266,7 +266,7 @@ function DataService.SetupAdminCommands()
 			end
 			
 			-- Check if message is a command
-			if not string.sub(message, 1, 1) == "/" then
+			if string.sub(message, 1, 1) ~= "/" then
 				return
 			end
 			

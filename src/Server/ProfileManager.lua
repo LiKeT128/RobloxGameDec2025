@@ -30,7 +30,7 @@ local RunService = game:GetService("RunService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 -- Import modules
-local ProfileService = require(script.Parent.Parent.Parent.Packages.ProfileService)
+local ProfileService = require(ReplicatedStorage:WaitForChild("Packages"):WaitForChild("ProfileService"))
 local GameConfig = require(ReplicatedStorage.Shared.GameConfig)
 
 --------------------------------------------------------------------------------
