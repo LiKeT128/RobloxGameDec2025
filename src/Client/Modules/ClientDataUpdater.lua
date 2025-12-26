@@ -82,6 +82,11 @@ ClientDataUpdater.OnTradeEvent = TradeEvent.Event
 ClientDataUpdater.OnGiftEvent = GiftEvent.Event
 ClientDataUpdater.OnNotification = NotificationEvent.Event
 
+-- Public Fire methods (so other controllers can trigger them)
+function ClientDataUpdater.FireNotification(data)
+	NotificationEvent:Fire(data)
+end
+
 --------------------------------------------------------------------------------
 -- REMOTE EVENT HANDLERS
 --------------------------------------------------------------------------------

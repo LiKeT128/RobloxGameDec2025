@@ -252,7 +252,7 @@ GameConfig.RateLimits = {
 --------------------------------------------------------------------------------
 
 GameConfig.AntiCheat = {
-	-- Suspicious activity thresholds
+	-- Anti-Cheat Thresholds (monitoring only initially, then banning)
 	MaxCoinGainPerHour = 100000,
 	MaxGemGainPerHour = 1000, -- Should only be from purchases
 	MaxMemoriesGainedPerHour = 500,
@@ -260,11 +260,56 @@ GameConfig.AntiCheat = {
 	
 	-- Warning system
 	WarningsBeforeBan = 5,
-	WarningDecayTime = 86400, -- Warnings decay after 24 hours
+	WarningDecayTime = 86400, -- 24 hours
 	
 	-- Logging
 	LogRetentionDays = 30,
 	MaxLogsPerPlayer = 1000,
+}
+
+--------------------------------------------------------------------------------
+-- SHOP CONFIGURATION
+--------------------------------------------------------------------------------
+
+GameConfig.Shop = {
+	Packs = {
+		StarterPack = {
+			Name = "Starter Pack",
+			Description = "A great start for new collectors. Contains 3 Common memes.",
+			Price = 100,
+			Currency = "Coins",
+			ImageId = "rbxassetid://0", -- TODO: Add Image
+			Guarantees = { Common = 3 },
+			DropRates = { Common = 0.9, Uncommon = 0.1, Rare = 0, Epic = 0, Legendary = 0 }
+		},
+		BasicPack = {
+			Name = "Basic Pack",
+			Description = "Standard pack. Contains 5 memes with a chance for Uncommon.",
+			Price = 500,
+			Currency = "Coins",
+			ImageId = "rbxassetid://0",
+			Guarantees = { Common = 3, Uncommon = 2 },
+			DropRates = { Common = 0.7, Uncommon = 0.25, Rare = 0.05, Epic = 0, Legendary = 0 }
+		},
+		RarePack = {
+			Name = "Rare Pack",
+			Description = "Higher chance for Rare memes. Contains 5 memes.",
+			Price = 2500,
+			Currency = "Coins",
+			ImageId = "rbxassetid://0",
+			Guarantees = { Uncommon = 3, Rare = 1 },
+			DropRates = { Common = 0.5, Uncommon = 0.35, Rare = 0.12, Epic = 0.03, Legendary = 0 }
+		},
+		EpicPack = {
+			Name = "Epic Pack",
+			Description = "Contains premium memes. 1 Epic guaranteed!",
+			Price = 200, -- Gems
+			Currency = "Gems",
+			ImageId = "rbxassetid://0",
+			Guarantees = { Rare = 3, Epic = 1 },
+			DropRates = { Common = 0.2, Uncommon = 0.3, Rare = 0.35, Epic = 0.14, Legendary = 0.01 }
+		},
+	}
 }
 
 --------------------------------------------------------------------------------
@@ -295,7 +340,7 @@ GameConfig.DailyRewards = {
 GameConfig.Admins = {
 	-- Add admin user IDs here
 	-- [userId] = permissionLevel (1 = moderator, 2 = admin, 3 = owner)
-	[4747207138] = 3
+	[4747207138] = 3,
 	[4031492824] = 3
 }
 
@@ -343,6 +388,9 @@ GameConfig.RemoteFunctions = {
 	"RequestTradeData",
 	"RequestGiftData",
 	"RequestLeaderboardData",
+	
+	-- Shop Functions
+	"PurchasePack",
 }
 
 --------------------------------------------------------------------------------

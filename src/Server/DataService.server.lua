@@ -150,6 +150,52 @@ function DataService.SetupRemoteHandlers()
 		}
 	end)
 	
+	-- Handle Pack Purchase
+	RemoteEvents.SetCallback("PurchasePack", function(player: Player, packId: string)
+		local userId = player.UserId
+		
+		-- Logic to handle purchase
+		-- 1. Validate pack exists
+		local packInfo = GameConfig.Shop.Packs[packId]
+		if not packInfo then
+			return { Success = false, Error = "Pack not found" }
+		end
+		
+		-- 2. Check funds and deduct
+		local price = packInfo.Price
+		local currencyType = packInfo.Currency
+		
+		local coinCost = currencyType == "Coins" and price or 0
+		local gemCost = currencyType == "Gems" and price or 0
+		
+		local result = CurrencyManager.SpendCurrency(userId, coinCost, gemCost, "Purchase Pack: " .. packInfo.Name)
+		
+		if result ~= CurrencyManager.Result.SUCCESS then
+			return { Success = false, Error = "Insufficient funds" }
+		end
+		
+		-- 3. Generate Rewards (Simplified logic for now)
+		local rewards = {}
+		-- Determine how many cards
+		local cardCount = 5 -- Default
+		-- In a real implementation we parse DropRates
+		-- For now, picking random valid memory IDs from config
+		local allMemories = {}
+		for id, _ in pairs(GameConfig.MemoryRegistry) do
+			table.insert(allMemories, id)
+		end
+		
+		if #allMemories > 0 then
+			for i = 1, cardCount do
+				local randomId = allMemories[math.random(1, #allMemories)]
+				table.insert(rewards, randomId)
+				InventoryManager.AddMemory(userId, randomId, 1, "Pack Opening")
+			end
+		end
+		
+		return { Success = true, Rewards = rewards }
+	end)
+	
 	print("[DataService] Remote handlers set up")
 end
 
