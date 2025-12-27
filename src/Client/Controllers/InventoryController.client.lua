@@ -124,7 +124,8 @@ local function Init()
 	for _, btn in ipairs(filterFrame:GetChildren()) do
 		if btn:IsA("TextButton") then
 			btn.MouseButton1Click:Connect(function()
-				currentFilter = btn.Name:gsub("Button", "") -- "All", "Common"...
+				-- Handle both naming conventions: "AllButton" or "AllFilter"
+				currentFilter = btn.Name:gsub("Button", ""):gsub("Filter", "")
 				updateInventory()
 			end)
 		end

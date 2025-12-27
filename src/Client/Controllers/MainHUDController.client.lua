@@ -91,19 +91,19 @@ local function Init()
 	end
 	
 	local topBar = hud:WaitForChild("TopBar")
-	local bottomBar = hud:WaitForChild("BottomBar")
-	local quickActions = hud:WaitForChild("QuickActions")
+	local bottomNav = hud:WaitForChild("BottomNavigation")
+	local quickActions = hud:WaitForChild("QuickActionsPanel")
 	
 	-- 1. Setup Currency Display
-	local currencyDisplay = topBar:WaitForChild("CurrencyDisplay")
-	local coinsLabel = currencyDisplay:WaitForChild("CoinsFrame"):WaitForChild("Amount")
-	local gemsLabel = currencyDisplay:WaitForChild("GemsFrame"):WaitForChild("Amount")
+	local currencyContainer = topBar:WaitForChild("CurrencyContainer")
+	local coinsLabel = currencyContainer:WaitForChild("CoinsDisplay"):WaitForChild("Amount")
+	local gemsLabel = currencyContainer:WaitForChild("GemsDisplay"):WaitForChild("Amount")
 	
 	-- Apply Icons if set
 	if ASSETS.CoinIcon ~= "rbxassetid://0" then
 		-- Assuming you might want to replace the text icon with an image
 		-- Logic here depends on exact GUI tree, assuming there's an Icon label
-		local iconLbl = currencyDisplay.CoinsFrame:FindFirstChild("Icon")
+		local iconLbl = currencyContainer.CoinsDisplay:FindFirstChild("Icon")
 		if iconLbl and iconLbl:IsA("ImageLabel") then iconLbl.Image = ASSETS.CoinIcon end
 	end
 	
@@ -165,8 +165,8 @@ local function Init()
 	end
 	
 	for btnName, screenName in pairs(screens) do
-		local btn = bottomBar:FindFirstChild(btnName)
-		if btn then
+		local navItem = bottomNav:FindFirstChild(btnName)
+		if navItem then
 			-- Apply Asset
 			-- Helper to set icon if it exists
 			local iconAsset = ASSETS[btnName:gsub("Button", "Icon")]
@@ -176,9 +176,18 @@ local function Init()
 				-- You might want to add an ImageLabel inside or change Class.
 			end
 			
-			btn.MouseButton1Click:Connect(function()
-				openScreen(screenName)
-			end)
+			-- New structure: nav items are Frames with a ClickArea button inside
+			local clickArea = navItem:FindFirstChild("ClickArea")
+			if clickArea then
+				clickArea.MouseButton1Click:Connect(function()
+					openScreen(screenName)
+				end)
+			elseif navItem:IsA("TextButton") or navItem:IsA("ImageButton") then
+				-- Fallback for direct buttons
+				navItem.MouseButton1Click:Connect(function()
+					openScreen(screenName)
+				end)
+			end
 		end
 	end
 	

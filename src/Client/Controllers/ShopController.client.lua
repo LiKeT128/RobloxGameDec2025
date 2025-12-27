@@ -33,7 +33,7 @@ local function Init()
 	Scaler.AddScaleConstraint(screen) -- Apply Scale
 	
 	local mainFrame = screen:WaitForChild("MainFrame")
-	local scrollFrame = mainFrame:WaitForChild("PacksScrollFrame")
+	local scrollFrame = mainFrame:WaitForChild("ContentScroll")
 	local template = scrollFrame:WaitForChild("PackTemplate")
 	
 	-- Close Button
