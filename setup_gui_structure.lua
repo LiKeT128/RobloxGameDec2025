@@ -21,34 +21,46 @@ local StarterGui = game:GetService("StarterGui")
 -- ============================================================================
 
 local COLORS = {
-    -- Backgrounds
-    Background = Color3.fromRGB(25, 25, 35),
-    Panel = Color3.fromRGB(40, 40, 55),
-    Surface = Color3.fromRGB(55, 55, 70),
-    Overlay = Color3.fromRGB(0, 0, 0),
+    -- ❄️ WINTER NEW YEAR 2026 THEME ❄️
+    -- Cozy, warm vibes with snowy winter aesthetic
     
-    -- Accents
-    Primary = Color3.fromRGB(85, 170, 255),
-    Secondary = Color3.fromRGB(255, 170, 85),
-    Success = Color3.fromRGB(85, 255, 170),
-    Warning = Color3.fromRGB(255, 200, 85),
-    Error = Color3.fromRGB(255, 85, 85),
+    -- Backgrounds (Deep midnight blue - like a winter night sky)
+    Background = Color3.fromRGB(15, 22, 36),      -- Deep midnight blue
+    Panel = Color3.fromRGB(25, 35, 55),           -- Darker blue panel
+    Surface = Color3.fromRGB(35, 48, 72),         -- Slightly lighter surface
+    Overlay = Color3.fromRGB(10, 15, 25),         -- Very dark overlay
     
-    -- Currencies
-    Coins = Color3.fromRGB(255, 200, 50),
-    CoinsText = Color3.fromRGB(60, 40, 0),
-    Gems = Color3.fromRGB(100, 200, 255),
-    GemsText = Color3.fromRGB(0, 40, 60),
+    -- Accents (Warm gold & festive colors)
+    Primary = Color3.fromRGB(255, 200, 100),      -- Warm golden amber (like firelight)
+    Secondary = Color3.fromRGB(180, 220, 255),    -- Icy light blue (snowflakes)
+    Success = Color3.fromRGB(120, 220, 150),      -- Soft festive green
+    Warning = Color3.fromRGB(255, 180, 80),       -- Warm orange glow
+    Error = Color3.fromRGB(220, 80, 90),          -- Festive red
     
-    -- Text
-    TextPrimary = Color3.fromRGB(255, 255, 255),
-    TextSecondary = Color3.fromRGB(180, 180, 180),
-    TextDark = Color3.fromRGB(30, 30, 30),
+    -- Currencies (Festive gold & icy gems)
+    Coins = Color3.fromRGB(255, 215, 100),        -- Bright warm gold
+    CoinsText = Color3.fromRGB(80, 50, 0),        -- Dark gold text
+    Gems = Color3.fromRGB(150, 220, 255),         -- Icy crystal blue
+    GemsText = Color3.fromRGB(20, 60, 90),        -- Dark icy text
     
-    -- Buttons
-    ButtonPrimary = Color3.fromRGB(85, 170, 255),
-    ButtonHover = Color3.fromRGB(100, 185, 255),
-    ButtonPressed = Color3.fromRGB(70, 150, 230),
+    -- Text (Snow white & soft grays)
+    TextPrimary = Color3.fromRGB(250, 250, 255),  -- Pure snow white
+    TextSecondary = Color3.fromRGB(180, 195, 220),-- Soft winter gray-blue
+    TextDark = Color3.fromRGB(20, 25, 35),        -- Deep dark text
+    
+    -- Buttons (Warm amber glow)
+    ButtonPrimary = Color3.fromRGB(220, 160, 60), -- Rich warm gold
+    ButtonHover = Color3.fromRGB(240, 180, 80),   -- Brighter on hover
+    ButtonPressed = Color3.fromRGB(190, 140, 50), -- Deeper on press
+    
+    -- 🎄 FESTIVE EXTRAS
+    Snow = Color3.fromRGB(245, 248, 255),         -- Pure snow
+    Ice = Color3.fromRGB(200, 235, 255),          -- Light ice
+    Frost = Color3.fromRGB(170, 210, 245),        -- Frosty accent
+    WarmGlow = Color3.fromRGB(255, 220, 150),     -- Cozy firelight
+    FestiveRed = Color3.fromRGB(200, 60, 70),     -- Christmas red
+    FestiveGreen = Color3.fromRGB(60, 150, 90),   -- Christmas green
+    Sparkle = Color3.fromRGB(255, 250, 200),      -- Golden sparkle
 }
 
 local SIZES = {
@@ -362,10 +374,10 @@ addPadding(BottomNavigation, SIZES.SmallPadding)
 addListLayout(BottomNavigation, Enum.FillDirection.Horizontal, 8)
 
 local navData = {
-    {Name = "ShopButton", Icon = "🏪", Label = "Shop"},
-    {Name = "InventoryButton", Icon = "🎭", Label = "Collection"},
-    {Name = "TradeButton", Icon = "🔄", Label = "Trade"},
-    {Name = "ProfileButton", Icon = "👤", Label = "Profile"},
+    {Name = "ShopButton", Icon = "🎁", Label = "Shop"},
+    {Name = "InventoryButton", Icon = "❄️", Label = "Collection"},
+    {Name = "TradeButton", Icon = "🤝", Label = "Trade"},
+    {Name = "ProfileButton", Icon = "⛄", Label = "Profile"},
     {Name = "LeaderboardButton", Icon = "🏆", Label = "Top"},
 }
 
@@ -423,9 +435,9 @@ local QuickActionsPanel = createFrame({
 addListLayout(QuickActionsPanel, Enum.FillDirection.Vertical, 10)
 
 local quickData = {
-    {Name = "DailyRewardButton", Icon = "📅"},
+    {Name = "DailyRewardButton", Icon = "🎄"},
     {Name = "GiftButton", Icon = "🎁"},
-    {Name = "FriendsButton", Icon = "👥"},
+    {Name = "FriendsButton", Icon = "☃️"},
 }
 
 for i, data in ipairs(quickData) do
@@ -535,7 +547,7 @@ local shopTitle = createLabel({
     Parent = shopHeader,
     Size = UDim2.new(1, -120, 1, 0),
     Position = UDim2.new(0, 20, 0, 0),
-    Text = "🏪 SHOP",
+    Text = "🎁 WINTER SHOP",
     TextSize = 24,
     TextXAlignment = Enum.TextXAlignment.Left,
 })
@@ -729,7 +741,7 @@ local invTitle = createLabel({
     Parent = invHeader,
     Size = UDim2.new(1, -120, 1, 0),
     Position = UDim2.new(0, 20, 0, 0),
-    Text = "🎭 COLLECTION",
+    Text = "❄️ COLLECTION",
     TextSize = 24,
     TextXAlignment = Enum.TextXAlignment.Left,
 })
@@ -867,10 +879,10 @@ print("✅ InventoryScreen created")
 
 -- Create remaining screens with same pattern
 local screenConfigs = {
-    {Name = "TradingScreen", Title = "🔄 TRADING", Order = 10},
-    {Name = "ProfileScreen", Title = "👤 PROFILE", Order = 10},
+    {Name = "TradingScreen", Title = "🤝 TRADING", Order = 10},
+    {Name = "ProfileScreen", Title = "⛄ PROFILE", Order = 10},
     {Name = "LeaderboardScreen", Title = "🏆 LEADERBOARD", Order = 10},
-    {Name = "DailyRewardsScreen", Title = "📅 DAILY REWARDS", Order = 10},
+    {Name = "DailyRewardsScreen", Title = "🎄 DAILY REWARDS", Order = 10},
     {Name = "GiftCenterScreen", Title = "🎁 GIFT CENTER", Order = 10},
     {Name = "SettingsScreen", Title = "⚙️ SETTINGS", Order = 10},
 }
@@ -949,34 +961,62 @@ local loadBg = createFrame({
     BackgroundColor3 = COLORS.Background,
 })
 
+-- Decorative snowflake hint (subtle)
+local snowDecor = createLabel({
+    Name = "SnowDecor",
+    Parent = LoadingScreen,
+    Size = UDim2.new(0, 300, 0, 40),
+    Position = UDim2.new(0.5, 0, 0.22, 0),
+    AnchorPoint = Vector2.new(0.5, 0.5),
+    Text = "❄️ ✨ ❄️",
+    TextSize = 28,
+    TextColor3 = COLORS.Frost,
+    Font = Enum.Font.Gotham,
+})
+
 local logoLabel = createLabel({
     Name = "Logo",
     Parent = LoadingScreen,
-    Size = UDim2.new(0, 450, 0, 100),
+    Size = UDim2.new(0, 500, 0, 100),
     Position = UDim2.new(0.5, 0, 0.35, 0),
     AnchorPoint = Vector2.new(0.5, 0.5),
-    Text = "MEMORY RUSH",
-    TextSize = 52,
+    Text = "🎄 MEMORY RUSH 🎄",
+    TextSize = 48,
+    TextColor3 = COLORS.WarmGlow,
     Font = Enum.Font.GothamBlack,
+})
+
+-- Subtitle for the season
+local subtitleLabel = createLabel({
+    Name = "Subtitle",
+    Parent = LoadingScreen,
+    Size = UDim2.new(0, 400, 0, 30),
+    Position = UDim2.new(0.5, 0, 0.43, 0),
+    AnchorPoint = Vector2.new(0.5, 0.5),
+    Text = "❄️ NEW YEAR 2026 EDITION ❄️",
+    TextSize = 16,
+    TextColor3 = COLORS.Frost,
+    Font = Enum.Font.GothamBold,
 })
 
 local loadingBarBg = createFrame({
     Name = "LoadingBar",
     Parent = LoadingScreen,
-    Size = UDim2.new(0, 400, 0, 16),
-    Position = UDim2.new(0.5, 0, 0.5, 0),
+    Size = UDim2.new(0, 400, 0, 18),
+    Position = UDim2.new(0.5, 0, 0.52, 0),
     AnchorPoint = Vector2.new(0.5, 0.5),
     BackgroundColor3 = COLORS.Surface,
 })
-addCorner(loadingBarBg, 8)
+addCorner(loadingBarBg, 9)
+addStroke(loadingBarBg, COLORS.Frost, 1, 0.7)
 
 local loadingProgress = createFrame({
     Name = "Progress",
     Parent = loadingBarBg,
     Size = UDim2.new(0, 0, 1, 0),
-    BackgroundColor3 = COLORS.Success,
+    BackgroundColor3 = COLORS.WarmGlow,
 })
-addCorner(loadingProgress, 8)
+addCorner(loadingProgress, 9)
 
 local tipLabel = createLabel({
     Name = "TipLabel",
@@ -984,7 +1024,7 @@ local tipLabel = createLabel({
     Size = UDim2.new(0, 600, 0, 50),
     Position = UDim2.new(0.5, 0, 0.62, 0),
     AnchorPoint = Vector2.new(0.5, 0.5),
-    Text = "Loading...",
+    Text = "☃️ Preparing your cozy memories...",
     TextSize = 16,
     Font = Enum.Font.Gotham,
     TextColor3 = COLORS.TextSecondary,
